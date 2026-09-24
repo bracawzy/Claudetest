@@ -57,11 +57,14 @@ img/headshot.jpg (placeholder)
 4. Check it at desktop width (~1440px) and phone width (~375px).
 5. Review together, then swap in real content.
 
-## Open questions
+## Decisions
 
-- Which nav sections do you want? The ones above are placeholders.
-- Your name / site title, and a short bio (placeholder is fine for now)?
-- Font preference: serif (bookish) or sans-serif (clean)?
-- Accent color?
-- Headshot on the home page: yes or no?
-- Do you want a blog/newsletter section at all?
+- Nav: Home · Blog · Projects · About
+- Font: JetBrains Mono (Google Fonts)
+- Links: black with an underline, no accent color
+- No headshot
+- Name/bio: placeholders ("Your Name") for now
+- Light mode only
+
+Mock v1 is built: `index.html`, `blog.html`, `post.html`, `projects.html`,
+`about.html`, `style.css`. Open `index.html` in a browser to view it.
