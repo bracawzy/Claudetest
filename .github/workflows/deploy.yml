@@ -1,0 +1,63 @@
+# Runs the tests on every pull request and push to main. On main, if the
+# tests pass, publishes the site to GitHub Pages.
+#
+# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions".
+
+name: Test and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      # Publish only the website files, not tests, docs or config.
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp -r index.html 404.html about blog projects tools css js _site/
+
+      # GitHub serves 404.html at any missing address, even deep ones, so give
+      # it a <base> pointing at the site root to keep its links working.
+      - name: Set base path on the 404 page
+        run: |
+          sed -i "s#<head>#<head>\n  <base href=\"${{ steps.pages.outputs.base_path }}/\">#" _site/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

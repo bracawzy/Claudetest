@@ -5,6 +5,7 @@
 import { discountBreakEven, priceIncreaseBreakEven } from "../lib/pricing.js";
 import { formatPercent } from "../lib/format.js";
 import { createLineChart, niceStep } from "../lib/line-chart.js";
+import { trackEvent } from "../analytics.js";
 
 const TABLE_CHANGES = [5, 10, 15, 20, 25, 30];
 
@@ -182,7 +183,18 @@ function applyHash() {
 }
 window.addEventListener("hashchange", applyHash);
 
+// Count each mode once per visit, the first time someone changes a value,
+// so the stats show whether people actually use the calculator.
+const trackedModes = new Set();
+function trackUse() {
+  const mode = form.elements.mode.value;
+  if (trackedModes.has(mode)) return;
+  trackedModes.add(mode);
+  trackEvent(`price-calculator/${mode}`, `Price calculator used: ${mode}`);
+}
+
 form.addEventListener("input", update);
+form.addEventListener("input", trackUse);
 form.addEventListener("submit", (event) => event.preventDefault());
 update();
 applyHash();
