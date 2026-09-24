@@ -68,7 +68,8 @@ img/headshot.jpg (placeholder)
 
 - Plain HTML, no build step. The header and nav are repeated in each page
   and updated together.
-- A Tools section for calculators. The math lives in `js/lib/` and is unit
+- A Tools section for calculators. The first is a discount calculator based
+  on Hermann Simon's break-even example in *Power Pricing*. The math lives in `js/lib/` and is unit
   tested; the page wiring lives in `js/tools/`.
 
 See `README.md` for the file layout.

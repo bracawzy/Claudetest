@@ -17,7 +17,8 @@ css/base.css            Colors, fonts, reset, typography
 css/layout.css          Page column, header/nav, footer
 css/components.css      Post lists, item lists, calculator forms
 
-js/lib/                 Pure logic (math, formatting). No DOM, unit tested.
+js/lib/                 Pure logic (math, formatting) plus the reusable
+                        line chart. Math files have no DOM and are unit tested.
 js/tools/               One script per tool page; connects a form to js/lib.
 tests/                  Tests for js/lib (Node's built-in test runner)
 ```

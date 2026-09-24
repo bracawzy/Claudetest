@@ -6,6 +6,7 @@
   --muted: #666;
   --rule: #ddd;
   --code-bg: #f2f2ee;
+  --error: #a00;
 
   --font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --size-body: 16px;

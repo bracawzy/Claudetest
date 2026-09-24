@@ -61,7 +61,7 @@
 .calc-results dt { color: var(--muted); }
 .calc-results dd { margin: 0; font-weight: 700; }
 
-.calc-error { color: #a00; }
+.calc-error { color: var(--error); }
 
 @media (max-width: 480px) {
   .post-list li {
@@ -69,4 +69,74 @@
     gap: 0;
     margin-bottom: 16px;
   }
+}
+
+/* Big result number with a sentence after it. */
+.calc-headline {
+  font-size: var(--size-h2);
+}
+
+.calc-headline strong {
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tables of numbers. Wide tables scroll inside their own box. */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 32px;
+}
+
+.data-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table caption {
+  text-align: left;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 6px 24px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+.data-table td:last-child { text-align: right; }
+.data-table th:last-child { text-align: right; }
+
+/* Line chart (js/lib/line-chart.js). */
+.chart {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.chart svg {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.chart-grid { stroke: var(--rule); stroke-width: 1; }
+.chart-axis { stroke: var(--text); stroke-width: 1; }
+.chart-tick { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.chart-label { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.chart-line { fill: none; stroke: var(--text); stroke-width: 2; stroke-linejoin: round; }
+.chart-marker { fill: var(--text); stroke: var(--bg); stroke-width: 2; }
+.chart-marker-guide { stroke: var(--text); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart-crosshair { stroke: var(--muted); stroke-width: 1; }
+.chart-hover-dot { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
+
+.chart-tooltip {
+  position: absolute;
+  padding: 4px 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--size-small);
+  white-space: nowrap;
+  pointer-events: none;
 }

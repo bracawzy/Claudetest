@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discount calculator · Your Name</title>
+  <meta name="description" content="See how many more units you need to sell to make up for a price discount.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script type="module" src="../js/tools/discount-calculator.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="site-title" href="../index.html">Your Name</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../tools/index.html" aria-current="page">Tools</a>
+        <a href="../about/index.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Discount calculator</h1>
+      <p>A discount comes straight out of your margin, so you have to sell a lot
+      more to earn the same profit. Enter your variable costs and a discount to
+      see how many more units you need to sell to break even.</p>
+
+      <form id="discount-form" class="calc">
+        <label for="discount-variable-cost">Variable costs (% of price)
+          <input id="discount-variable-cost" name="variableCost" type="number" inputmode="decimal" min="0" max="99" step="any" value="60">
+        </label>
+        <label for="discount-discount">Discount (%)
+          <input id="discount-discount" name="discount" type="number" inputmode="decimal" min="0" max="99" step="any" value="20">
+        </label>
+      </form>
+
+      <div aria-live="polite">
+        <div id="discount-results" hidden>
+          <p class="calc-headline"><strong id="discount-headline"></strong>
+          <span id="discount-summary"></span></p>
+          <dl class="calc-results">
+            <dt>Margin per sale now</dt><dd id="discount-margin-before"></dd>
+            <dt>Margin after discount</dt><dd id="discount-margin-after"></dd>
+            <dt>Revenue must rise by</dt><dd id="discount-revenue"></dd>
+          </dl>
+        </div>
+        <p id="discount-error" class="calc-error" hidden></p>
+      </div>
+
+      <div id="discount-visuals">
+        <h2>More units needed at each discount</h2>
+        <p class="muted">The dot is your discount. Hover or tap the chart to try others.</p>
+        <div id="discount-chart"></div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption id="discount-table-caption"></caption>
+            <thead>
+              <tr><th scope="col">Discount</th><th scope="col">More units needed</th></tr>
+            </thead>
+            <tbody id="discount-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2>How it works</h2>
+      <p>If variable costs are 60% of your price, each sale leaves you a 40%
+      margin. A 20% discount cuts that margin in half, to 20%, so you need to
+      sell twice as many units (+100%) just to make the same profit.</p>
+      <p>The formula: <code>more units = discount &divide; (margin &minus; discount)</code>,
+      where <code>margin = 100% &minus; variable costs</code>. If the discount is as big as the
+      margin, every sale loses money and no amount of extra sales can make up for it.</p>
+      <p class="muted">Based on the break-even example in Hermann Simon's
+      <cite>Power Pricing</cite>.</p>
+
+      <p><a href="../tools/index.html">&larr; All tools</a></p>
+    </main>
+
+    <footer class="site-footer">&copy; 2026 Your Name</footer>
+  </div>
+</body>
+</html>
