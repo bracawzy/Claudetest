@@ -66,5 +66,9 @@ img/headshot.jpg (placeholder)
 - Name/bio: placeholders ("Your Name") for now
 - Light mode only
 
-Mock v1 is built: `index.html`, `blog.html`, `post.html`, `projects.html`,
-`about.html`, `style.css`. Open `index.html` in a browser to view it.
+- Plain HTML, no build step. The header and nav are repeated in each page
+  and updated together.
+- A Tools section for calculators. The math lives in `js/lib/` and is unit
+  tested; the page wiring lives in `js/tools/`.
+
+See `README.md` for the file layout.

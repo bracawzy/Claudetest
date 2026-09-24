@@ -1,0 +1,43 @@
+/* Layout: the page column, header/nav, and footer. */
+
+/* One narrow column at every screen size: desktop looks like mobile. */
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+.site-header {
+  margin-bottom: 48px;
+}
+
+.site-title {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: var(--size-h1);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.site-nav a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}
+
+.site-footer {
+  margin-top: 64px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-size: var(--size-small);
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .page { padding-top: 32px; }
+}
