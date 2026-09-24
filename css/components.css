@@ -140,3 +140,44 @@
   white-space: nowrap;
   pointer-events: none;
 }
+
+/* Mode picker: a row of radio buttons. */
+.calc-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.calc-modes legend {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.calc .calc-modes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.calc .calc-modes input {
+  width: auto;
+  margin: 0;
+  accent-color: var(--text);
+}
+
+/* A label with a number box and a slider under it. */
+.calc-field {
+  display: grid;
+  gap: 4px;
+}
+
+.calc input[type="range"] {
+  padding: 0;
+  border: 0;
+  accent-color: var(--text);
+  cursor: pointer;
+}

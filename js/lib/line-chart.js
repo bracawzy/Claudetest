@@ -152,9 +152,12 @@ export function createLineChart(container) {
 
       tooltip.textContent = options.tooltip(x, y);
       tooltip.hidden = false;
-      const flip = px > width / 2;
-      tooltip.style.left = flip ? "" : `${px + 12}px`;
-      tooltip.style.right = flip ? `${width - px + 12}px` : "";
+      // Sit to the right of the cursor, or to the left if it would overflow,
+      // and never outside the chart.
+      const tipWidth = tooltip.offsetWidth;
+      let left = px + 12;
+      if (left + tipWidth > width) left = px - 12 - tipWidth;
+      tooltip.style.left = `${Math.max(0, left)}px`;
       tooltip.style.top = `${MARGIN.top}px`;
     });
     hitArea.addEventListener("pointerleave", hide);

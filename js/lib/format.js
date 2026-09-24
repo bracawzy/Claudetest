@@ -16,5 +16,6 @@ export function formatCurrency(value) {
 export function formatPercent(value, { sign = false, decimals = 1 } = {}) {
   const rounded = Number(value.toFixed(decimals));
   const text = `${rounded.toLocaleString("en-US", { maximumFractionDigits: decimals })}%`;
+  if (rounded < 0) return `\u2212${text.slice(1)}`; // true minus sign
   return sign && rounded > 0 ? `+${text}` : text;
 }

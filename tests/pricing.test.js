@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { discountBreakEven } from "../js/lib/pricing.js";
+import { discountBreakEven, priceIncreaseBreakEven } from "../js/lib/pricing.js";
 
 const round = (n) => Math.round(n * 100) / 100;
 
@@ -32,4 +32,24 @@ test("rejects out-of-range input", () => {
   assert.throws(() => discountBreakEven(-1, 10), RangeError);
   assert.throws(() => discountBreakEven(50, -5), RangeError);
   assert.throws(() => discountBreakEven(NaN, 10), RangeError);
+});
+
+test("price increase: 60% variable costs, 20% increase can lose a third of units", () => {
+  const r = priceIncreaseBreakEven(60, 20);
+  assert.equal(r.marginBefore, 40);
+  assert.equal(r.marginAfter, 60);
+  assert.equal(round(r.volumeDecrease), 33.33);
+  assert.equal(round(r.revenueChange), -20);
+});
+
+test("price increase of 0% allows no lost sales", () => {
+  const r = priceIncreaseBreakEven(60, 0);
+  assert.equal(r.volumeDecrease, 0);
+  assert.equal(r.revenueChange, 0);
+});
+
+test("price increase rejects invalid input", () => {
+  assert.throws(() => priceIncreaseBreakEven(100, 10), RangeError);
+  assert.throws(() => priceIncreaseBreakEven(60, -5), RangeError);
+  assert.throws(() => priceIncreaseBreakEven(60, NaN), RangeError);
 });
