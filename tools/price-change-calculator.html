@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Price change calculator · Your Name</title>
+  <meta name="description" content="See how many more units you need to sell after a discount, or how many you can lose after a price increase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script type="module" src="../js/tools/price-change-calculator.js"></script>
+  <script type="module" src="../js/analytics.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="site-title" href="../index.html">Your Name</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../tools/index.html" aria-current="page">Tools</a>
+        <a href="../about/index.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Price change calculator</h1>
+      <p>A discount comes straight out of your margin, so you have to sell a lot
+      more to earn the same profit. A price increase works the other way: you can
+      sell fewer units and still come out ahead. Enter your variable costs and a
+      price change to see by how much.</p>
+
+      <form id="price-form" class="calc">
+        <fieldset class="calc-modes">
+          <legend>I want to</legend>
+          <label for="price-mode-discount"><input id="price-mode-discount" type="radio" name="mode" value="discount" checked> Give a discount</label>
+          <label for="price-mode-increase"><input id="price-mode-increase" type="radio" name="mode" value="increase"> Raise my price</label>
+        </fieldset>
+
+        <label for="price-variable-cost">Variable costs (% of price)
+          <input id="price-variable-cost" name="variableCost" type="number" inputmode="decimal" min="0" max="99" step="any" value="60">
+        </label>
+
+        <div class="calc-field">
+          <label for="price-change" id="price-change-label">Discount (%)</label>
+          <input id="price-change" name="change" type="number" inputmode="decimal" min="0" step="any" value="20">
+          <input id="price-change-slider" type="range" min="0" max="50" step="0.5" value="20" aria-label="Adjust the percentage">
+        </div>
+      </form>
+
+      <div aria-live="polite">
+        <div id="price-results" hidden>
+          <p class="calc-headline"><strong id="price-headline"></strong>
+          <span id="price-summary"></span></p>
+          <dl class="calc-results">
+            <dt>Margin per sale now</dt><dd id="price-margin-before"></dd>
+            <dt>Margin after the change</dt><dd id="price-margin-after"></dd>
+            <dt>Revenue change</dt><dd id="price-revenue"></dd>
+          </dl>
+        </div>
+        <p id="price-error" class="calc-error" hidden></p>
+      </div>
+
+      <div id="price-visuals">
+        <h2 id="price-chart-title">More units needed at each discount</h2>
+        <p class="muted">The dot is your number. Hover or tap the chart to try others.</p>
+        <div id="price-chart"></div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption id="price-table-caption"></caption>
+            <thead>
+              <tr><th scope="col">Change</th><th scope="col" id="price-table-heading">More units needed</th></tr>
+            </thead>
+            <tbody id="price-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2>How it works</h2>
+      <p>If variable costs are 60% of your price, each sale leaves you a 40%
+      margin.</p>
+      <p><strong>Discount:</strong> a 20% discount cuts that margin in half, to
+      20%, so you need to sell twice as many units (+100%) just to make the same
+      profit. The formula is <code>more units = discount &divide; (margin &minus; discount)</code>.
+      If the discount is as big as the margin, every sale loses money and no amount
+      of extra sales can make up for it.</p>
+      <p><strong>Price increase:</strong> a 20% increase lifts the margin to 60%,
+      so you can sell a third fewer units (&minus;33%) and still make the same
+      profit. The formula is <code>units you can lose = increase &divide; (margin + increase)</code>.</p>
+      <p>In both cases, <code>margin = 100% &minus; variable costs</code>.</p>
+      <p class="muted">Based on the break-even examples in Hermann Simon's
+      <cite>Power Pricing</cite>.</p>
+
+      <p><a href="../tools/index.html">&larr; All tools</a></p>
+    </main>
+
+    <footer class="site-footer">&copy; 2026 Your Name · <a href="../about/index.html#privacy">Privacy</a></footer>
+  </div>
+</body>
+</html>

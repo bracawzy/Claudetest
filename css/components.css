@@ -1,0 +1,183 @@
+/* Components: reusable pieces that appear on some pages. */
+
+/* Post list: date + title per row. */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.post-list li {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.post-list time {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Item list: title link + one-line description (projects, tools). */
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-list li { margin-bottom: 24px; }
+.item-list p { margin: 0; }
+
+/* Calculator forms. */
+.calc {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.calc label {
+  display: grid;
+  gap: 4px;
+}
+
+.calc input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--text);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.calc-results {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 24px;
+  margin: 0 0 32px;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-results dt { color: var(--muted); }
+.calc-results dd { margin: 0; font-weight: 700; }
+
+.calc-error { color: var(--error); }
+
+@media (max-width: 480px) {
+  .post-list li {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+}
+
+/* Big result number with a sentence after it. */
+.calc-headline {
+  font-size: var(--size-h2);
+}
+
+.calc-headline strong {
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tables of numbers. Wide tables scroll inside their own box. */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 32px;
+}
+
+.data-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table caption {
+  text-align: left;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 6px 24px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+.data-table td:last-child { text-align: right; }
+.data-table th:last-child { text-align: right; }
+
+/* Line chart (js/lib/line-chart.js). */
+.chart {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.chart svg {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.chart-grid { stroke: var(--rule); stroke-width: 1; }
+.chart-axis { stroke: var(--text); stroke-width: 1; }
+.chart-tick { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.chart-label { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.chart-line { fill: none; stroke: var(--text); stroke-width: 2; stroke-linejoin: round; }
+.chart-marker { fill: var(--text); stroke: var(--bg); stroke-width: 2; }
+.chart-marker-guide { stroke: var(--text); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart-crosshair { stroke: var(--muted); stroke-width: 1; }
+.chart-hover-dot { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
+
+.chart-tooltip {
+  position: absolute;
+  padding: 4px 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--size-small);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Mode picker: a row of radio buttons. */
+.calc-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.calc-modes legend {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.calc .calc-modes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.calc .calc-modes input {
+  width: auto;
+  margin: 0;
+  accent-color: var(--text);
+}
+
+/* A label with a number box and a slider under it. */
+.calc-field {
+  display: grid;
+  gap: 4px;
+}
+
+.calc input[type="range"] {
+  padding: 0;
+  border: 0;
+  accent-color: var(--text);
+  cursor: pointer;
+}
