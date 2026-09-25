@@ -73,4 +73,8 @@ img/headshot.jpg (placeholder)
   in *Power Pricing*. The math lives in `js/lib/` and is unit
   tested; the page wiring lives in `js/tools/`.
 
+- Hosting: GitHub Pages (free) on the custom domain `denniswhatever.com`
+  from Porkbun, with `www` redirecting to the bare domain. Setup steps are in
+  `README.md`.
+
 See `README.md` for the file layout.

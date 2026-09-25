@@ -4,7 +4,8 @@ import { shouldTrack, endpointFor } from "../js/lib/analytics-config.js";
 
 test("tracks the live site when a code is set", () => {
   assert.equal(shouldTrack("yourname.github.io", "yourname"), true);
-  assert.equal(shouldTrack("example.com", "yourname"), true);
+  assert.equal(shouldTrack("denniswhatever.com", "yourname"), true);
+  assert.equal(shouldTrack("www.denniswhatever.com", "yourname"), true);
 });
 
 test("never tracks without a code", () => {

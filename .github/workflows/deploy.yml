@@ -1,7 +1,8 @@
 # Runs the tests on every pull request and push to main. On main, if the
 # tests pass, publishes the site to GitHub Pages.
 #
-# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions".
+# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions", and
+# Custom domain: denniswhatever.com (see README.md for the Porkbun DNS records).
 
 name: Test and deploy
 
